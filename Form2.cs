@@ -13,8 +13,8 @@ namespace Expert_system
 {
     public partial class Test_Form : Form
     {
-        int counter = 0;//Индекс вопроса
-        string answer_check;//Ответ на него
+        int counter = 0; //Индекс вопроса
+        string answer_check; //Ответ на него
 
         //Список вопросов
         string q1 = @"Какая группа музыкальных инструментов вас интересует?";
@@ -144,7 +144,6 @@ namespace Expert_system
         string fleit_pan_sound = @"C:\Users\User\OneDrive - ФГБОУ ВО УГАТУ\Рабочий стол\УНИВЕР\3 КУРС\5 СЕМЕСТР\Инженерия знаний\Лабораторная работа №3-4\melodies\флейта пана.wav";
         string cimb_sound = @"C:\Users\User\OneDrive - ФГБОУ ВО УГАТУ\Рабочий стол\УНИВЕР\3 КУРС\5 СЕМЕСТР\Инженерия знаний\Лабораторная работа №3-4\melodies\цимбалы.wav";
 
-
         public Test_Form()
         {
             InitializeComponent();
@@ -189,6 +188,42 @@ namespace Expert_system
             counter++;
             next_question(counter, answer_check);
         }
+        private void play_btn_Click(object sender, EventArgs e)
+        {   //Кнопка начала воспроизведения
+            sp.Play();
+        }
+        private void stop_btn_Click(object sender, EventArgs e)
+        {   //Кнопка остановки воспроизведения
+            sp.Stop();
+        }
+        public void nq1(string question, string answer1, string answer2)
+        {
+            Text_txt.Text = question;
+            Var1_btn.Text = answer1;
+            Var4_btn.Text = answer2;
+            Var2_btn.Visible = false;
+            Var3_btn.Visible = false;
+        }
+        public void nq2(string mus_instr, Image img, string sound)
+        {
+            Text_txt.Text = "Это инструмент " + mus_instr;
+            Illustr_pb.Image = img;
+            sp.SoundLocation = sound;
+            play_btn.Visible = true;
+            stop_btn.Visible = true;
+            Var1_btn.Visible = false;
+            Var4_btn.Visible = false;
+            Var2_btn.Visible = false;
+            Var3_btn.Visible = false;
+        }
+        public void nq3(string question, string answer1, string answer2, string answer3)
+        {
+            Text_txt.Text = question;
+            Var1_btn.Text = answer1;
+            Var2_btn.Text = answer2;
+            Var3_btn.Text = answer3;
+            Var4_btn.Visible = false;
+        }
         public void next_question(int index, string answer)
         {
             Var1_btn.Visible = true;
@@ -200,500 +235,111 @@ namespace Expert_system
             switch (index)
             {
                 case 1:
-                    if(answer == a1)
-                    {
-                        Text_txt.Text = q2;
-                        Var1_btn.Text = a5;
-                        Var2_btn.Text = a6;
-                        Var3_btn.Text = a7;
-                        Var4_btn.Visible = false;
-                    }
-                    else if(answer == a2)
-                    {
-                        Text_txt.Text = q14;
-                        Var1_btn.Text = a22;
-                        Var2_btn.Text = a23;
-                        Var3_btn.Text = a24;
-                        Var4_btn.Visible = false;
-                    }
+                    if (answer == a1)
+                        nq3(q2, a5, a6, a7);
+                    else if (answer == a2)
+                        nq3(q14, a22, a23, a24);
                     else if (answer == a3)
-                    {
-                        Text_txt.Text = q15;
-                        Var1_btn.Text = a24;
-                        Var4_btn.Text = a23;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q15, a24, a23);
                     else if (answer == a4)
-                    {
-                        Text_txt.Text = q17;
-                        Var1_btn.Text = a33;
-                        Var4_btn.Text = a34;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q17, a33, a34);
                     break;
                 case 2:
-                    if(answer == a5)
-                    {
-                        Text_txt.Text = q3;
-                        Var1_btn.Text = a8;
-                        Var4_btn.Text = a9;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                    if (answer == a5)
+                        nq1(q3, a8, a9);
                     else if (answer == a6)
-                    {
-                        Text_txt.Text = q6;
-                        Var1_btn.Text = a14;
-                        Var4_btn.Text = a15;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q6, a14, a15);
                     else if (answer == a7)
-                    {
-                        Text_txt.Text = q8;
-                        Var1_btn.Text = a18;
-                        Var4_btn.Text = a19;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q8, a18, a19);
                     else if (answer == a22)
-                    {
-                        Text_txt.Text = q11;
-                        Var1_btn.Text = a25;
-                        Var4_btn.Text = a26;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q11, a25, a26);
                     else if (answer == a23 && Text_txt.Text == q14)
-                    {
-                        Text_txt.Text = q13;
-                        Var1_btn.Text = a29;
-                        Var4_btn.Text = a30;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q13, a29, a30);
                     else if (answer == a24 && Text_txt.Text == q14)
-                    {
-                        Text_txt.Text = "Это инструмент Цимбалы";
-                        Illustr_pb.Image = cimb;
-                        sp.SoundLocation = cimb_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Цимбалы", cimb, cimb_sound);
                     else if (answer == a24 && Text_txt.Text == q15)
-                    {
-                        Text_txt.Text = q16;
-                        Var1_btn.Text = a31;
-                        Var4_btn.Text = a32;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q16, a31, a32);
                     else if (answer == a23 && Text_txt.Text == q15)
-                    {
-                        Text_txt.Text = "Это инструмент Бубен";
-                        Illustr_pb.Image = bub;
-                        sp.SoundLocation = bub_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Бубен", bub, bub_sound);
                     else if (answer == a33)
-                    {
-                        Text_txt.Text = "Это инструмент Варган";
-                        Illustr_pb.Image = varg;
-                        sp.SoundLocation = varg_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Варган", varg, varg_sound);
                     else if (answer == a34)
-                    {
-                        Text_txt.Text = q18;
-                        Var1_btn.Text = a35;
-                        Var4_btn.Text = a34;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q18, a35, a34);
                     break;
                 case 3:
                     if (answer == a8)
-                    {
-                        Text_txt.Text = q4;
-                        Var1_btn.Text = a10;
-                        Var4_btn.Text = a11;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q4, a10, a11);
                     else if (answer == a9)
-                    {
-                        Text_txt.Text = q5;
-                        Var1_btn.Text = a12;
-                        Var4_btn.Text = a13;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q5, a12, a13);
                     else if (answer == a14)
-                    {
-                        Text_txt.Text = q7;
-                        Var1_btn.Text = a16;
-                        Var4_btn.Text = a17;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q7, a16, a17);
                     else if (answer == a15)
-                    {
-                        Text_txt.Text = "Это инструмент Брёлка";
-                        Illustr_pb.Image = brel;
-                        sp.SoundLocation = brel_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Брёлка", brel, brel_sound);
                     else if (answer == a18)
-                    {
-                        Text_txt.Text = q9;
-                        Var1_btn.Text = a20;
-                        Var4_btn.Text = a21;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q9, a20, a21);
                     else if (answer == a19)
-                    {
-                        Text_txt.Text = q10;
-                        Var1_btn.Text = a20;
-                        Var4_btn.Text = a21;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q10, a20, a21);
                     else if (answer == a25)
-                    {
-                        Text_txt.Text = q12;
-                        Var1_btn.Text = a27;
-                        Var4_btn.Text = a28;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q12, a27, a28);
                     else if (answer == a26)
-                    {
-                        Text_txt.Text = "Это инструмент Балалайка";
-                        Illustr_pb.Image = bal;
-                        sp.SoundLocation = bal_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Балалайка", bal, bal_sound);
                     else if (answer == a29)
-                    {
-                        Text_txt.Text = "Это инструмент Скрипка";
-                        Illustr_pb.Image = scrip;
-                        sp.SoundLocation = scrip_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Скрипка", scrip, scrip_sound);
                     else if (answer == a30)
-                    {
-                        Text_txt.Text = "Это инструмент Лира";
-                        Illustr_pb.Image = lira;
-                        sp.SoundLocation = lira_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Лира", lira, lira_sound);
                     else if (answer == a31)
-                    {
-                        Text_txt.Text = "Это инструмент Тулумбас";
-                        Illustr_pb.Image = tulum;
-                        sp.SoundLocation = tulum_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Тулумбас", tulum, tulum_sound);
                     else if (answer == a32)
-                    {
-                        Text_txt.Text = "Это инструмент Барабан";
-                        Illustr_pb.Image = bar;
-                        sp.SoundLocation = bar_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Барабан", bar, bar_sound);
                     else if (answer == a35)
-                    {
-                        Text_txt.Text = "Это инструмент Стиральная Доска";
-                        Illustr_pb.Image = stir_deck;
-                        sp.SoundLocation = stir_deck_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Стиральная Доска", stir_deck, stir_deck_sound);
                     else if (answer == a34)
-                    {
-                        Text_txt.Text = q19;
-                        Var1_btn.Text = a36;
-                        Var4_btn.Text = a37;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q19, a36, a37);
                     break;
                 case 4:
                     if (answer == a10)
-                    {
-                        Text_txt.Text = "Это инструмент Дудка";
-                        Illustr_pb.Image = dud;
-                        sp.SoundLocation = dud_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Дудка", dud, dud_sound);
                     else if (answer == a11)
-                    {
-                        Text_txt.Text = "Это инструмент Флейта Пана";
-                        Illustr_pb.Image = fleit_pan;
-                        sp.SoundLocation = fleit_pan_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Флейта Пана", fleit_pan, fleit_pan_sound);
                     else if (answer == a12)
-                    {
-                        Text_txt.Text = "Это инструмент Окарина";
-                        Illustr_pb.Image = okar;
-                        sp.SoundLocation = okar_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Окарина", okar, okar_sound);
                     else if (answer == a13)
-                    {
-                        Text_txt.Text = "Это инструмент Малая Флейта";
-                        Illustr_pb.Image = lil_fl;
-                        sp.SoundLocation = lil_fl_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Малая Флейта", lil_fl, lil_fl_sound);
                     else if (answer == a16)
-                    {
-                        Text_txt.Text = "Это инструмент Жалейка";
-                        Illustr_pb.Image = zhal;
-                        sp.SoundLocation = zhal_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Жалейка", zhal, zhal_sound);
                     else if (answer == a17)
-                    {
-                        Text_txt.Text = "Это инструмент Волынка";
-                        Illustr_pb.Image = vol;
-                        sp.SoundLocation = vol_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Волынка", vol, vol_sound);
                     else if (answer == a20 && Text_txt.Text == q9)
-                    {
-                        Text_txt.Text = "Это инструмент Труба";
-                        Illustr_pb.Image = trub;
-                        sp.SoundLocation = trub_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Труба", trub, trub_sound);
                     else if (answer == a21 && Text_txt.Text == q9)
-                    {
-                        Text_txt.Text = "Это инструмент Рог";
-                        Illustr_pb.Image = rog;
-                        sp.SoundLocation = rog_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Рог", rog, rog_sound);
                     else if (answer == a20 && Text_txt.Text == q10)
-                    {
-                        Text_txt.Text = "Это инструмент Малая труба";
-                        Illustr_pb.Image = lil_tr;
-                        sp.SoundLocation = lil_tr_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Малая труба", lil_tr, lil_tr_sound);
                     else if (answer == a21 && Text_txt.Text == q10)
-                    {
-                        Text_txt.Text = "Это инструмент Малый рог";
-                        Illustr_pb.Image = lil_rog;
-                        sp.SoundLocation = lil_rog_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Малый рог", lil_rog, lil_rog_sound);
                     else if (answer == a27)
-                    {
-                        Text_txt.Text = "Это инструмент Гусли";
-                        Illustr_pb.Image = gus;
-                        sp.SoundLocation = gus_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Гусли", gus, gus_sound);
+
                     else if (answer == a28)
-                    {
-                        Text_txt.Text = "Это инструмент Арфа";
-                        Illustr_pb.Image = arfa;
-                        sp.SoundLocation = arfa_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Арфа", arfa, arfa_sound);
                     else if (answer == a36)
-                    {
-                        Text_txt.Text = "Это инструмент Погремушка";
-                        Illustr_pb.Image = pogr;
-                        sp.SoundLocation = pogr_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Погремушка", pogr, pogr_sound);
                     else if (answer == a37)
-                    {
-                        Text_txt.Text = q20;
-                        Var1_btn.Text = a6;
-                        Var4_btn.Text = a40;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q20, a6, a40);
                     break;
                 case 5:
                     if (answer == a6)
-                    {
-                        Text_txt.Text = q21;
-                        Var1_btn.Text = a38;
-                        Var4_btn.Text = a39;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq1(q21, a38, a39);
                     else if (answer == a40)
-                    {
-                        Text_txt.Text = "Это инструмент Свистулька";
-                        Illustr_pb.Image = svist;
-                        sp.SoundLocation = svist_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Свистулька", svist, svist_sound);
                     break;
                 case 6:
                     if (answer == a38)
-                    {
-                        Text_txt.Text = "Это инструмент Губная гармоника";
-                        Illustr_pb.Image = gub_gar;
-                        sp.SoundLocation = gub_gar_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Губная гармоника", gub_gar, gub_gar_sound);
                     else
-                    {
-                        Text_txt.Text = "Это инструмент Береста";
-                        Illustr_pb.Image = ber;
-                        sp.SoundLocation = ber_sound;
-                        play_btn.Visible = true;
-                        stop_btn.Visible = true;
-                        Var1_btn.Visible = false;
-                        Var4_btn.Visible = false;
-                        Var2_btn.Visible = false;
-                        Var3_btn.Visible = false;
-                    }
+                        nq2("Береста", ber, ber_sound);
                     break;
             }
-        }
-
-        private void play_btn_Click(object sender, EventArgs e)
-        {
-            sp.Play();
-        }
-
-        private void stop_btn_Click(object sender, EventArgs e)
-        {
-            sp.Stop();
         }
     }
 }
